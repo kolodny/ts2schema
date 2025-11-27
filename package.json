@@ -1,0 +1,36 @@
+{
+  "name": "ts2schema",
+  "version": "1.0.0",
+  "description": "Generate JSON Schema from exported functions",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "files": [
+    "dist/"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/json-schema": "^7.0.15",
+    "@types/node": "^24.10.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "typescript-json-schema": "^0.66.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kolodny/ts2schema.git"
+  },
+  "type": "commonjs",
+  "types": "./dist/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/kolodny/ts2schema/issues"
+  },
+  "homepage": "https://github.com/kolodny/ts2schema#readme"
+}
