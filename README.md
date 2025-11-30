@@ -1,6 +1,6 @@
 # ts2schema
 
-Generate JSON Schema from TypeScript exports using `typescript-json-schema`
+Generate JSON Schema from TypeScript exports
 
 ## Installation
 

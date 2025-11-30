@@ -1,7 +1,8 @@
 import * as path from 'node:path';
 import * as TJS from 'typescript-json-schema';
-import ts from 'typescript-json-schema/node_modules/typescript';
 import type { JSONSchema4, JSONSchema7 } from 'json-schema';
+
+const { ts } = TJS;
 
 const defaultSettings: TJS.PartialArgs = {
   ...{ required: true, ref: true },
