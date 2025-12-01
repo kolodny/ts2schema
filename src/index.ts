@@ -96,8 +96,14 @@ export const generateSchemas = (
       required.push(...(Array.isArray(first.required) ? first.required : []));
       unaryFns.push(fn);
     } else {
-      props['params'] = { type: 'object', properties: {}, required: [] };
+      props['params'] = {
+        type: 'object',
+        properties: {},
+        required: [],
+        additionalProperties: false,
+      };
       for (const [index, item] of Object.entries(items)) {
+        if (!item.type) continue;
         if (!item.title) {
           const title = `arg${index}`;
           props['params'].properties![title] = { type: 'array', items: item };

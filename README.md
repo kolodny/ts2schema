@@ -115,4 +115,4 @@ export const sayHiV1 = (name: string) => `Hi, ${name}`;
 export const sayHiV2 = ({ name }: { name: string }) => `Hi, ${name}`;
 ```
 
-The `unaryFns` will be `['addV2', 'sayHiV2']`. This let's us know how to invoke the functions. See [this test](./test//calling.ts#L16-L19) for an example.
+The `unaryFns` will be `['addV2', 'sayHiV2']`. This let's us know how to invoke the functions. See [this test](./test//calling.ts#L17-L28) for an example.
