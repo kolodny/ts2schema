@@ -9,10 +9,11 @@ const defaultSettings: TJS.PartialArgs = {
   ...{ noExtraProps: true, constAsEnum: true, ignoreErrors: true },
 };
 export const extractor = (fns?: string[], nonFns?: string[]) => {
-  const prefix = `type Fn<F> = F extends (...args: infer A) => infer R ? { params?: A; result?: Awaited<R> } : never;\n`;
+  const prefix = `type Fn<F> = F extends (...args: infer A) => infer R ? { params?: A; result?: Exclude<Awaited<R>, void> } : never;`;
   const split1 = fns?.map((e) => `type ${e} = Fn<typeof imported.${e}>;`) || [];
   const split2 = nonFns?.map((e) => `type ${e} = typeof imported.${e};`) || [];
-  return [prefix, ...split1, ...split2].join('\n');
+  const split3 = fns?.map((e) => `type ${e}Fn = typeof imported.${e};`) || [];
+  return [prefix, ...split1, ...split2, ...split3].join('\n');
 };
 
 const force = <T>(o: T) => (o || {}) as Extract<NonNullable<T>, object>;
@@ -78,6 +79,9 @@ export const generateSchemas = (
   const unaryFns: string[] = [];
   for (const fn of fns ?? []) {
     const def = getSchema(fn);
+    const fnDef = getSchema(`${fn}Fn`);
+    if (fnDef.description) def.description ??= fnDef.description;
+
     const props = def.properties!;
 
     const {
